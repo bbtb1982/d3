@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>svg baby</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="d3.js" charset="utf-8"></script>
+</head>
+<body>
+<h3>SVG Bar</h3>
+  <svg>
+    <rect width="50" height="200" style='fill:blue' />
+  </svg>
+  <h3>D3 bar</h3>
+  <script>
+    d3.select('body')
+      .append('svg')
+      .append('rect')
+        .attr('width',50)
+        .attr('height', 200)
+        .style('fill', 'blue');
+  </script>
+
+</body>
+</html>

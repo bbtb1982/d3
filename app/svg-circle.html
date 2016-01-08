@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>svg baby</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="d3.js" charset="utf-8"></script>
+</head>
+<body>
+<h3>SVG circle</h3>
+  <svg width='50' height='50'>
+    <circle cx='25' cy='25' r='25' style='fill:blue' />
+  </svg>
+  <h3>D3 circle</h3>
+  <script>
+    d3.select('body')
+      .append('svg')
+        .attr('width', 50)
+        .attr('with', 50)
+      .append('circle')
+        .attr('cx', 25)
+        .attr('cy', 25)
+        .attr('r', 25)
+        .style('fill', 'purple');
+  </script>
+
+</body>
+</html>
