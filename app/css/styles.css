@@ -1,9 +1,19 @@
 .chart rect {
   fill: steelblue;
-}
-
+},
 .chart text {
   fill: white;
   font: 10px sans-serif;
   text-anchor: end;
-}}
+}},
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+},
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 10px;
+}

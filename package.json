@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"broccoli serve",
+    "start": "npm run build-app && broccoli serve",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-app": "rm -rf dist && broccoli build dist",
-    "build": "npm run build-app"
+    "build": "npm run build-app",
+    "lint": "jscs ./app/js"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +19,12 @@
     "broccoli-concat": "^2.1.0",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
-    "broccoli-static-compiler": "^0.2.2"
+    "broccoli-sane-watcher": "^1.1.4",
+    "broccoli-static-compiler": "^0.2.2",
+    "lodash-cli": "^3.10.1"
+  },
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "lodash": "^3.10.1"
   }
 }

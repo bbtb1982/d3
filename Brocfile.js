@@ -8,7 +8,7 @@ const pkg = require('./package.json');
 
 const projectDir = './';
 
-//source trees are node versions of files
+// source trees are node versions of files
 var sourceTrees = [];
 
 
@@ -18,13 +18,8 @@ var sourceTrees = [];
 var htmlDir = projectDir + 'app';
 
 var html = Funnel(htmlDir, {
-  include: ['*.html']
+ include: [ '**/*.html' ]
 });
-
-// app = esTranspiler(app, {
-//   filterExtensions:['js', 'es6'],
-//   browserPolyfill: true,
-// });
 
 sourceTrees.push(html);
 
@@ -34,7 +29,7 @@ sourceTrees.push(html);
 var stylesDir = projectDir + 'app/css';
 
 var styles = Funnel(stylesDir, {
-  include: ['*']
+  include: [ '*' ]
 });
 
 styles = Concat(styles, {
@@ -45,22 +40,38 @@ styles = Concat(styles, {
 sourceTrees.push(styles);
 
 /****************************************
-* Javascript D#
+* node_modules libs inport
 ****************************************/
-var d3Dir = projectDir + 'node_modules/d3';
+var nodeModulesDir = projectDir + 'node_modules/';
 
-var d3 = Funnel(d3Dir, {
-  include: ['d3.js']
-});
+var jsLibs = Funnel(nodeModulesDir, {
+  files: [
+    'd3/d3.js',
+    'jquery/dist/jquery.js'
+  ],
+  getDestinationPath: function(relativePath) {
+    if(relativePath === 'd3/d3.js'){
+      return 'js/d3.js';
+    } else if (relativePath === 'jquery/dist/jquery.js'){
+      return '/js/jquery.js';
+    } else {
+      return '/js/' + relativePath;
+    }
 
-sourceTrees.push(d3);
+
+  }
+})
+
+sourceTrees.push(jsLibs);
+
+
 /****************************************
 * Javascript
 ****************************************/
-var jsDir = projectDir + 'app/js';
+var jsDir = projectDir + 'app';
 
 var js = Funnel(jsDir, {
-  include: ['*']
+  include: ['**/*.js']
 });
 
 // js = esTranspiler(js, {
@@ -73,10 +84,10 @@ var js = Funnel(jsDir, {
 // });
 
 
- js = Concat(js, {
-  inputFiles: ['*'],
-  outputFile: 'js.js'
-});
+//  js = Concat(js, {
+//   inputFiles: ['*'],
+//   outputFile: 'js.js'
+// });
 
 
 
