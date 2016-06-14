@@ -1,72 +1,54 @@
-var h = 100;
-var w = 666;
-var padding = 20;
+var linearScale = d3.scale.linear()
+                           .domain([0,10000])
+                           .range([0,100])
+
+console.log(linearScale(1));
+console.log(linearScale(10));
+console.log(linearScale(100));
 
 
-//build line
-function buildLine(ds) {
+/*******************************************************************************
+Manually setting Domain
+*******************************************************************************/
+var initialScaleData = [0, 1000, 3000, 2000, 5000, 4000, 7000, 6000, 9000, 8000, 10000];
 
-    console.log('xscale-max: '+ d3.max(ds.monthlySales, function (d){ return d.month; }));
-    console.log('yscale-max: '+ d3.max(ds.monthlySales, function (d){ return d.sales; }));
+var newScaledData = [];
 
-    //scales
-    var xScale = d3.scale.linear()
-                .domain([
-                            d3.min(ds.monthlySales, function(d){ return d.month;}) ,
-                            d3.max(ds.monthlySales, function(d){ return d.month;})
-                        ])
-                .range([0, w])
-                .nice();
+var linearScale = d3.scale.linear()
+                   .domain([0,10000])
+                   .range([0,100]);
 
-
-    var yScale = d3.scale.linear()
-                .domain([0, d3.max(ds.monthlySales, function(d){ return d.sales;})])
-                .range([h,0])
-                .nice();
-
-    var lineFun = d3.svg.line()
-        .x(function (d) {return xScale(d.month); } )
-        .y(function (d) {return yScale(d.sales); })
-        .interpolate("linear");
-
-    var svg = d3.select("body").append("svg").attr({ width:w, height:h});
-
-    var viz = svg.append("path")
-                .attr({
-                    d: lineFun(ds.monthlySales),
-                    "stroke" : "purple",
-                    "stroke-width": 2,
-                    "fill" : "none"
-                });
-
+for (var i = 0; i < initialScaleData.length; i++) {
+ newScaledData[i] = linearScale(initialScaleData[i]);
 }
 
-//show header
-function showHeader(ds) {
-    d3.select("body").append("h1")
-        .text(ds.category + " Sales (2013)");
+console.log(newScaledData);
+
+/*******************************************************************************
+Max and Min
+*******************************************************************************/
+
+var initialScaleData = [0, 1000, 3000, 2000, 5000, 4000, 7000, 6000, 9000, 8000, 10000];
+var maxInitialData = d3.max(initialScaleData);
+var minInitialData = d3.min(initialScaleData);
+
+console.log('max: ', maxInitialData);
+console.log('min: ', minInitialData);
+
+
+/*******************************************************************************
+Set Dynamically domain
+*******************************************************************************/
+var initialScaleData = [0, 1000, 3000, 2000, 5000, 4000, 7000, 6000, 9000, 8000, 10000];
+var newScaledData = [];
+var linearScale = d3.scale.linear()
+                   .domain([d3.min(initialScaleData), d3.max(initialScaleData)])
+                   .range([0,100]);
+
+for (var i = 0; i < initialScaleData.length; i++) {
+ newScaledData[i] = linearScale(initialScaleData[i]);
 }
 
-
-//get data and draw things
-d3.json("https://api.github.com/repos/bsullins/d3js-resources/contents/monthlySalesbyCategoryMultiple.json", function(error, data) {
-
-   if(error) {
-       console.log(error);
-   } else {
-       console.log(data); //we're golden!
-   }
-
-    var decodedData = JSON.parse(window.atob(data.content));
-
-    console.log(decodedData.contents);
+console.log(newScaledData);
 
 
-    decodedData.contents.forEach(function(content){
-        ds=content;
-        console.log(ds);
-        showHeader(ds);
-        buildLine(ds);
-    })
-
-});

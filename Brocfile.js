@@ -47,14 +47,17 @@ var nodeModulesDir = projectDir + 'node_modules/';
 var jsLibs = Funnel(nodeModulesDir, {
   files: [
     'd3/d3.js',
-    'jquery/dist/jquery.js'
+    'jquery/dist/jquery.js',
+    'moment/moment.js'
   ],
   getDestinationPath: function(relativePath) {
     if(relativePath === 'd3/d3.js'){
       return 'js/d3.js';
     } else if (relativePath === 'jquery/dist/jquery.js'){
       return '/js/jquery.js';
-    } else {
+    } else if (relativePath === 'moment/moment.js') {
+      return '/js/moment.js';
+    }  else {
       return '/js/' + relativePath;
     }
 

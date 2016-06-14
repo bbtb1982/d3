@@ -9,14 +9,17 @@
     <script type="text/javascript" src="http://localhost:4200/js/_.js" ></script>
   </head>
   <body>
-    <h3>Types of Scale</h3>
+    <h1>Svg Groups</h1>
+    <h2>Transform Types</h2>
     <ul>
-      <li>Identity: a special kind of linear scale, 1:1, good for pixel values. input == output</li>
-      <li>Linear: transforms one value in the domain interval into a value in the range interval</li>
-      <li>Power and Logarithmic scales: sqrt, pow, log – used for exponentially increasing values</li>
-      <li>Quantize and Quantile scales: for discrete sets of unique possible values for inputs or outputs</li>
-      <li>Ordinal: for non quantitative scales, like names, categories, etc.</li>
+      <li>translate(...)</li>
+      <li>scale(...)</li>
+      <li>rotate(...)</li>
+      <li>translate(...)</li>
+      <li>rotate(...)</li>
     </ul>
+    <p>< g transform="translate(...) scale(...) rotate(...) translate(...) rotate(...)" ></p>
+    <p>transfoms are applied right to left as this statement is interpreted as nested groups</p>
     <script type="text/javascript" src="js.js"></script>
   </body>
 </html>

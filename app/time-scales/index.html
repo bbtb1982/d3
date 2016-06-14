@@ -9,13 +9,14 @@
     <script type="text/javascript" src="http://localhost:4200/js/_.js" ></script>
   </head>
   <body>
-    <h3>Types of Scale</h3>
+    <h3>Time Scales</h3>
     <ul>
-      <li>Identity: a special kind of linear scale, 1:1, good for pixel values. input == output</li>
-      <li>Linear: transforms one value in the domain interval into a value in the range interval</li>
-      <li>Power and Logarithmic scales: sqrt, pow, log – used for exponentially increasing values</li>
-      <li>Quantize and Quantile scales: for discrete sets of unique possible values for inputs or outputs</li>
-      <li>Ordinal: for non quantitative scales, like names, categories, etc.</li>
+      <li>d3.scale() <br />
+        .time([date.leftDate, date.rightDate])<br />
+        .range([num_left,num_right])</li>
+        <hr />
+      <li>domain is dates</li>
+      <li>range is a set of number</li>
     </ul>
     <script type="text/javascript" src="js.js"></script>
   </body>
